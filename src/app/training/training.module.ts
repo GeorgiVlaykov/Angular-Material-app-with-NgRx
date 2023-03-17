@@ -4,9 +4,10 @@ import { CurrentTrainingComponent } from './current-training/current-training.co
 import { StopTrainingComponent } from './current-training/stop-training/stop-training.component';
 import { NewTrainingComponent } from './new-training/new-training.component';
 import { PastTrainingsComponent } from './past-trainings/past-trainings.component';
-import { TrainingRoutingModule } from './training-routing.module';
 import { TrainingComponent } from './training.component';
-
+import { TrainingRoutingModule } from './training-routing.module';
+import { StoreModule } from '@ngrx/store';
+import { trainingReducer } from './training.reducer';
 @NgModule({
   declarations: [
     TrainingComponent,
@@ -15,7 +16,11 @@ import { TrainingComponent } from './training.component';
     PastTrainingsComponent,
     StopTrainingComponent,
   ],
-  imports: [SharedModule, TrainingRoutingModule],
+  imports: [
+    SharedModule,
+    TrainingRoutingModule,
+    StoreModule.forFeature('training', trainingReducer),
+  ],
   exports: [],
   entryComponents: [StopTrainingComponent],
 })

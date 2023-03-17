@@ -1,16 +1,11 @@
 import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
-import { AuthService } from './auth.service';
-
+import { Store } from '@ngrx/store';
+import * as fromRoot from '../app.reducer';
 @Injectable({ providedIn: 'root' })
 export class AuthGuard {
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(private store: Store<fromRoot.State>) {}
 
   canMatch() {
-    if (this.authService.isAuth()) {
-      return true;
-    } else {
-      this.router.navigate(['/login']);
-    }
+    return this.store.select(fromRoot.getIsAuth);
   }
 }

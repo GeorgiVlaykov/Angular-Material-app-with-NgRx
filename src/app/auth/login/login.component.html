@@ -6,6 +6,7 @@
     [formGroup]="loginForm"
     (ngSubmit)="onSubmit()"
   >
+    <h1>Login</h1>
     <mat-form-field>
       <input
         type="email"
@@ -31,11 +32,11 @@
       mat-raised-button
       color="primary"
       [disabled]="loginForm.invalid"
-      *ngIf="!isLoading"
+      *ngIf="!(isLoading$ | async)"
     >
       Submit
     </button>
-    <mat-spinner *ngIf="isLoading"></mat-spinner>
+    <mat-spinner *ngIf="isLoading$ | async"></mat-spinner>
   </form>
 </section>
 
